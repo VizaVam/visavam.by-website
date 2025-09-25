@@ -1,0 +1,3 @@
+User-agent: *
+Disallow: /
+Sitemap: https://visavam.by/sitemap.xml
