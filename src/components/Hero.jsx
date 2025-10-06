@@ -26,17 +26,17 @@ const Hero = ({onOpenModal}) => {
                 className="w-full lg:flex items-center mdd:-mt-[50%] i12pro:-mt-[70%] ise:-mt-[75%] lg:mt-0 relative z-5">
                 {/* Изображение */}
                 <img
-                    src="/banner-hero.svg"
+                    src="/mainwoman12.svg"
                     alt="Оформление виз с VisaVam.by – Легко и Доступно"
-                    className="relative lg:top-0 lg:left-[30%] lg:w-[55%] mdd:hidden"
+                    className="relative lg:top-0 lg:left-[30%] lg:w-[55%] mdd:hidden translate-y-[85px]"
                 />
                 <img
-                    src="/main-m.svg"
+                    src="/mainmobile123.webp"
                     alt="Оформление виз с VisaVam.by – Легко и Доступно"
-                    className="relative lg:top-0 lg:left-[30%] lg:w-[55%] md:hidden w-[840px] h-[802px]"
+                    className="relative lg:top-0 lg:left-[30%] lg:w-[55%] md:hidden mt-[215px] mb-[215px]"
                 />
 
-                <div className="lg:hidden absolute bottom-0 mdd:pb-[50%] i12pro:pb-[57%] ise:pb-[60%] w-full px-[5%]">
+                <div className="hidden absolute bottom-0 mdd:pb-[50%] i12pro:pb-[57%] ise:pb-[60%] w-full px-[5%]">
                     <button
                         onClick={onOpenModal}
                         className="bbbt relative overflow-hidden w-[100%] bg-customBlue text-white py-3 rounded-full shadow-[0_2px_4px_-2px_rgba(0,122,255,0.8)] hover:bg-blue-600 active:scale-95 transition-transform duration-150 ease-in-out"
