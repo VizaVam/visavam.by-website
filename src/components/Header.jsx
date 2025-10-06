@@ -5,7 +5,7 @@ const Header = ({onOpenModal, onScrollTo}) => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isFloatingMenuOpen, setIsFloatingMenuOpen] = useState(false); // Управление плавающей кнопкой
     const [isScrolled, setIsScrolled] = useState(false);
-    const [showFloatingButton, setShowFloatingButton] = useState(false);
+    const [showFloatingButton, setShowFloatingButton] = useState(true);
     const currentDate = new Date();
     const discountEndDate = new Date('2025-07-31T23:59:59+05:00');
 
@@ -30,14 +30,14 @@ const Header = ({onOpenModal, onScrollTo}) => {
                 return;
             }
 
-            const mainButton = document.querySelector('.bbbt');
-            if (!mainButton) {
-                setShowFloatingButton(false);
-                return;
-            }
+            // const mainButton = document.querySelector('.bbbt');
+            // if (!mainButton) {
+            //     setShowFloatingButton(false);
+            //     return;
+            // }
 
-            const buttonRect = mainButton.getBoundingClientRect();
-            setShowFloatingButton(buttonRect.top < 0);
+            // const buttonRect = mainButton.getBoundingClientRect();
+            setShowFloatingButton(true);
         };
 
         handleScroll(); // Ensure state updates if the user has already scrolled
