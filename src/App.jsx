@@ -11,6 +11,7 @@ const App = () => {
   const [isModalOpen, setModalOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
+  const [hasTimerestricted, setHasTimerestricted] = useState(true);
 
   const handleOpenModal = () => {
     setModalOpen(true);
@@ -48,8 +49,8 @@ const App = () => {
 
   return (
     <div className="flex flex-col min-h-screen">
-      <Header onOpenModal={handleOpenModal}/>
-      <main className="flex-grow z-1">
+      <Header onOpenModal={handleOpenModal} onTimerestrictedChange={setHasTimerestricted} />
+      <main className={hasTimerestricted ? "pt-[65px] flex-grow z-1" : "flex-grow z-1"}>
         <Routes>
           <Route
             path="/"

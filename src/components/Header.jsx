@@ -1,7 +1,8 @@
 import {useEffect, useState} from "react";
 import {AnimatePresence, motion} from "framer-motion";
+import TimeRestrictedBlock from "./TimeRestrictedBlock/TimeRestrictedBlock"
 
-const Header = ({onOpenModal, onScrollTo}) => {
+const Header = ({onOpenModal, onScrollTo}, { onTimerestrictedChange }) => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isFloatingMenuOpen, setIsFloatingMenuOpen] = useState(false); // Управление плавающей кнопкой
     const [isScrolled, setIsScrolled] = useState(false);
@@ -242,6 +243,7 @@ const Header = ({onOpenModal, onScrollTo}) => {
                         {/*</a>*/}
                     </div>
                 </div>
+                <TimeRestrictedBlock onVisibilityChange={onTimerestrictedChange}/>
             </header>
             {/* Фиксированная кнопка */}
             <div className="fixed bottom-16 right-7 z-50 sm:hidden">
