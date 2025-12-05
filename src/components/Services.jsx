@@ -8,16 +8,17 @@ const countries = [
   { name: "Франция", img: "/france.png", svg: "/france_flag.svg" },
   { name: "Литва", img: "/litva.png", svg: "/litva_flag.svg" },
   { name: "Латвия", img: "/latvia.png", svg: "/latvia_flag.svg" },
+  { name: "Болгария", img: "/bulgaria.png", svg: "/bulgaria_flag.svg" },
   { name: "США", img: "/usa.png", svg: "/usa_flag.svg" },
   { name: "Великобритания", img: "/greatbritain.png", svg: "/greatbritain_flag.svg" },
-  { name: "Болгария", img: "/bulgaria.png", svg: "/bulgaria_flag.svg" },
+  { name: "Хорватия", img: "/croatia.jpg", svg: "/netherland_flag.svg" },
   { name: "Нидерланды", img: "/netherland.png", svg: "/netherland_flag.svg" },
   { name: "Греция", img: "/greece.png", svg: "/greece_flag.svg" },
   { name: "Венгрия", img: "/hungary.png", svg: "/hungary_flag.svg" },
   { name: "Италия", img: "/italy.png", svg: "/italy_flag.svg" },
   { name: "Румыния", img: "/romania.png", svg: "/romania_flag.svg" },
   { name: "Австрия", img: "/austria.png", svg: "/austria_flag.svg" },
-  { name: "Китай", img: "/china.png", svg: "/china_flag.svg" },
+  { name: "Чехия", img: "/czech.jpg", svg: "/china_flag.svg" },
 ];
 
 const Services = () => {
@@ -37,7 +38,7 @@ const Services = () => {
 
   return (
     <section id="services" className="px-[5%] pt-16 lg:pt-24">
-      <h2 className="text-2xl lg:text-3xl font-medium mb-8 lg:mb-16">Поможем отправиться в путешествие</h2>
+      <h2 className="text-2xl lg:text-3xl font-medium mb-8 lg:mb-16">Поможем с подготовкой к путешествию</h2>
       <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         {displayedCountries.map((country, index) => (
           <div

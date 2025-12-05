@@ -62,22 +62,27 @@ const Header = ({onOpenModal, onScrollTo}, { onTimerestrictedChange }) => {
                     <div
                         className="bg-customBlue text-white block sm:flex items-center sm:pl-[5%] px-4 py-2 w-[54%] clip-path-mobile clip-path-desktop"
                     >
-          <span className="font-light text-[10px] sm:text-base">
+          <span className=" text-[10px] sm:text-base">
             <noindex>
               пр-т Победителей 17, офис 1204
             </noindex>
           </span>
-                        <br/>
-                        <span className="sm:ml-6 font-light text-[10px] sm:text-base">
-              <noindex>
-              09:00-19:00
-            </noindex>
+            <br/>
+            <noindex>
+            <span className="sm:ml-6 text-[10px] sm:text-base flex flex-row">
+                
+                    <p className={"text-[14px] lg:text-[16px] mdd:text-[10px]"}>Пн-пт:
+                        09:00-19:00</p>
+                    <p className={"text-[14px] lg:text-[16px] mdd:text-[10px] pl-[10px]"}>Сб:
+                        10:00-14:00
+                    </p>
             </span>
-                    </div>
+            </noindex>
+            </div>
 
-                    <div
-                        className="bg-orange-500 text-white items-center justify-end sm:pr-[5%] px-4 py-2 w-[48%] sm:flex"
-                    >
+                <div
+                    className="bg-orange-500 text-white items-center justify-end sm:pr-[5%] px-4 py-2 w-[48%] sm:flex"
+                >
                         <noindex className={"sm:hidden flex justify-end"}>
                             <a href="tel:+375296775470" className={"text-[18px] font-semibold hover:underline"}>
                                 +375296775470
@@ -85,7 +90,7 @@ const Header = ({onOpenModal, onScrollTo}, { onTimerestrictedChange }) => {
                         </noindex>
                         <noindex
                             className={"bg-orange-500 text-white items-center justify-end py-2 sm:flex mdd:hidden gap-4"}>
-                            <a href="tel:+375296775470" className={"hover:underline text-lg"}>
+                            <a href="tel:+375296775470" className={"hover:underline text-[24px]"}>
                                 +375296775470
                             </a>
                             <a
@@ -94,7 +99,7 @@ const Header = ({onOpenModal, onScrollTo}, { onTimerestrictedChange }) => {
                                 rel="noopener noreferrer"
 
                             >
-                                <img src="/whatsapp.svg" alt="WhatsApp" className="h-7"/>
+                                <img src="/whatsapp.svg" alt="WhatsApp" className="h-[2.125rem]"/>
                             </a>
                             <a
                                 href="viber://chat?number=%2B375293734870"
@@ -102,7 +107,7 @@ const Header = ({onOpenModal, onScrollTo}, { onTimerestrictedChange }) => {
                                 rel="noopener noreferrer"
 
                             >
-                                <img src="/viber.svg" alt="Viber" className="h-7"/>
+                                <img src="/viber.svg" alt="Viber" className="h-[2.125rem]"/>
                             </a>
                             <a
                                 href="https://t.me/+375295648334"
@@ -110,7 +115,7 @@ const Header = ({onOpenModal, onScrollTo}, { onTimerestrictedChange }) => {
                                 rel="noopener noreferrer"
 
                             >
-                                <img src="/telegram.svg" alt="Telegram" className="h-7"/>
+                                <img src="/telegram.svg" alt="Telegram" className="h-[2.125rem]"/>
                             </a>
                             {/*<a href="mailto:l336906097@gmail.com" className="mr-2">*/}
                             {/*  <img src="/mail.svg" alt="E-Mail" className="h-5"/>*/}

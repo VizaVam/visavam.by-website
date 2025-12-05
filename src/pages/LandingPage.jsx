@@ -7,6 +7,9 @@ import Reviews from '../components/Reviews.jsx';
 import Faq from '../components/Faq.jsx';
 import CallTooAction from '../components/CallTooAction.jsx';
 import Announcement from "../components/Announcement.jsx";
+import VisaSupportSection from "../components/VizaCoop.jsx"
+import TakePrice from "../components/TakePrice.jsx"
+
 
 const LandingPage = ({onOpenModal}) => {
     return (
@@ -17,8 +20,11 @@ const LandingPage = ({onOpenModal}) => {
                 <Announcement/>
             </div>
             <Services onOpenModal={onOpenModal}/>
+            <VisaSupportSection onOpenModal={onOpenModal}/>
+            <TakePrice/>
             {/*<Steps/>*/}
             {/*<Documents/>*/}
+
             <Reviews/>
             <Faq/>
             <CallTooAction onOpenModal={onOpenModal}/>

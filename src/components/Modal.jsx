@@ -33,6 +33,37 @@ const Modal = ({ isOpen, onClose }) => {
     setErrors((prev) => ({ ...prev, agreement: "" }));
   };
 
+  const getGAClientId = () => {
+    const cookieValue = document.cookie
+      .split('; ')
+      .find(row => row.startsWith('_ga='))
+      ?.split('=')[1];
+  
+    if (cookieValue) {
+      const parts = cookieValue.split('.');
+  
+      // Проверяем, что parts содержит нужное количество элементов (4)
+      if (parts.length === 4) {
+        // Объединяем parts[2] и parts[3], чтобы получить единую строку
+        const combinedClientId = parts[2] + parts[3];  // Объединяем эти части как строку
+  
+        // Преобразуем строку в целое число (integer)
+        return parseInt(combinedClientId, 10);  // Преобразуем в integer
+      }
+    }
+    return null;  // Если clientId не найден или cookie не в ожидаемом формате
+  };
+  
+  const getYandexClientId = () => {
+      const cookieValue = document.cookie
+      .split('; ')
+      .find(row => row.startsWith('_ym_uid='))
+      ?.split('=')[1];
+
+  // Преобразуем Yandex clientId в integer
+    return cookieValue ? parseInt(cookieValue, 10) : null;
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const { name, phone, email } = formData;
@@ -65,6 +96,21 @@ const Modal = ({ isOpen, onClose }) => {
       params.append("u_email", finalEmail);
       params.append("source", "заявка с visavam.by лэндинга");
 
+      if (params.get('utm_source')) {
+        params.append("utm_source", params.get('utm_source'));
+      }
+      if (params.get('utm_medium')) {
+        params.append("utm_medium", params.get('utm_medium'));
+      }
+
+      const gaClientId = getGAClientId();
+      const ymClientId = getYandexClientId();
+      const clientId = gaClientId || ymClientId;
+
+      if (clientId) { 
+        params.append("r_cl_id", clientId);
+      }
+
       const response = await fetch("https://api.u-on.ru/tCjYa5IOpS143s3V6w4j/lead/create.json", {
         method: "POST",
         mode: "no-cors",
@@ -75,8 +121,9 @@ const Modal = ({ isOpen, onClose }) => {
       });
 
       console.log("Request sent. Response status:", response.status);
-      setMessage("Заявка успешно отправлена. С Вами свяжутся в ближайшее время.");
-      setIsSubmitted(true);
+
+      sessionStorage.setItem("previousPage", window.location.href);     
+      window.location.href = "/spasibo";
     } catch (error) {
       console.error("Ошибка отправки данных:", error);
       setMessage(
@@ -129,16 +176,52 @@ const Modal = ({ isOpen, onClose }) => {
                   )}
                 </div>
                 <div className="mb-4">
-                  <InputMask
-                      mask="+999 99 999-99-99"
-                      name="phone"
-                      placeholder="Телефон*"
-                      value={formData.phone}
-                      onChange={handlePhoneInput}
-                      className={`w-full border ${
-                          errors.phone ? "border-red-500" : "border-[#15419E]"
-                      } rounded-full p-2`}
-                  />
+                <IMaskInput
+                    mask={[
+                    {
+                        mask: "+{375} 00 000-00-00", // Беларусь
+                        startsWith: "375",
+                        country: "BY",
+                    },
+                    {
+                        mask: "+{7} 000 000-00-00", // Россия
+                        startsWith: "7",
+                        country: "RU",
+                    },
+                    {
+                        mask: "+{48} 000-000-000", // Польша
+                        startsWith: "48",
+                        country: "PL",
+                    },
+                    {
+                        mask: "+0000000000000", // fallback
+                    },
+                    ]}
+                    dispatch={(appended, dynamicMasked) => {
+                    const number = (dynamicMasked.value + appended).replace(/\D/g, "");
+                    return dynamicMasked.compiledMasks.find(m => number.startsWith(m.startsWith)) || dynamicMasked.compiledMasks[3];
+                    }}
+                    definitions={{ '0': { mask: /[0-9]/ } }}
+                    lazy={false}
+                    overwrite={true}
+                    placeholder={isPhoneFocused ? "+" : "Телефон* (начиная с +)"}
+                    value={formData.phone || ""}
+                    onAccept={(value) => {
+                    const cleanValue = value.replace(/[^\d+]/g, "");
+                    setFormData({ ...formData, phone: cleanValue });
+                    }}
+                    onFocus={() => setIsPhoneFocused(true)}
+                    onBlur={(e) => {
+                    if (!e.target.value || e.target.value === "+") {
+                        setFormData({ ...formData, phone: "" });
+                        setIsPhoneFocused(false);
+                    }
+                    }}
+                    className={`w-full border ${
+                    errors.phone ? "border-red-500" : "border-[#15419E]"
+                    } rounded-full py-2 px-4 w-max mdd:w-full text-[14px] text-gray-600`}
+                />
+                <p className="text-xs text-gray-500">Номер в международном формате: +375, +7, +48</p>
                   {errors.phone && (
                       <p className="text-red-500 text-sm mt-1">{errors.phone}</p>
                   )}
