@@ -33,7 +33,7 @@ const Hero = ({onOpenModal}) => {
                 <img
                     src="/mainmobile123.webp"
                     alt="Оформление виз с VisaVam.by – Легко и Доступно"
-                    className="relative lg:top-0 lg:left-[30%] lg:w-[55%] md:hidden mt-[215px] mb-[215px]"
+                    className="relative lg:top-0 lg:left-[30%] lg:w-[55%] md:hidden mt-[215px] lg:mb-[215px]"
                 />
 
                 <div className="hidden absolute bottom-0 mdd:pb-[50%] i12pro:pb-[57%] ise:pb-[60%] w-full px-[5%]">
@@ -103,6 +103,10 @@ const Hero = ({onOpenModal}) => {
                 <li className="flex items-center text-lg font-[500] text-[20px]">
                     <img src="/check.svg" alt="Преимущество работы с VisaVam.by" className="h-5 w-5 mr-2"/>
                     Персональный подход
+                </li>
+                <li className="flex items-center text-lg font-[500] text-[20px]">
+                    <img src="/check.svg" alt="Преимущество работы с VisaVam.by" className="h-5 w-5 mr-2"/>
+                    Работаем оффлайн/онлайн
                 </li>
             </ul>
         </section>
