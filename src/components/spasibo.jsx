@@ -4,7 +4,7 @@ export default function SpasiboPage() {
     const goBack = () => {
         const previousPage = sessionStorage.getItem("previousPage");
         if (previousPage) {
-            window.location.href = previousPage; 
+            window.location.href = "/"; 
         } else {
             window.location.href = "/";
         }

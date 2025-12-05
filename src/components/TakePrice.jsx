@@ -226,17 +226,17 @@ const FormBlock = () => {
                 params.append("utm_source", params.get('utm_source'));
             }
             
-            if (params.get('utm_medium')) {
-                params.append("utm_medium", params.get('utm_medium'));
-            }
+            // if (params.get('utm_medium')) {
+            //     params.append("utm_medium", params.get('utm_medium'));
+            // }
 
-            const gaClientId = getGAClientId();
-            const ymClientId = getYandexClientId();
-            const clientId = gaClientId || ymClientId;
+            // const gaClientId = getGAClientId();
+            //const ymClientId = getYandexClientId();
+            //const clientId = gaClientId || ymClientId;
 
-            if (clientId) { 
-                params.append("r_cl_id", clientId);
-            }
+            // if (gaClientId) { 
+            //     params.append("r_cl_id", gaClientId);
+            // }
             // r_cl_id
 
             console.log("Отправляемые данные (URLSearchParams):", params.toString());

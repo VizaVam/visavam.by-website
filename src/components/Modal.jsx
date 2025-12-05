@@ -1,5 +1,5 @@
 import { useState } from "react";
-import InputMask from "react-input-mask";
+import { IMaskInput } from "react-imask";
 
 const Modal = ({ isOpen, onClose }) => {
   const [formData, setFormData] = useState({ name: "", phone: "", email: "" });
@@ -8,12 +8,14 @@ const Modal = ({ isOpen, onClose }) => {
   const [message, setMessage] = useState("");
   const [isAgreed, setIsAgreed] = useState(true);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isPhoneFocused, setIsPhoneFocused] = useState(false);
 
   if (!isOpen) return null;
 
   const validatePhone = (phone) => {
-    const phoneRegex = /^\+?\d{3}\s\d{2}\s\d{3}-\d{2}-\d{2}$/;
-    return phoneRegex.test(phone);
+    const cleaned = phone.replace(/[^\d+]/g, "");
+    const pattern = /^\+(375\d{9}|7\d{10}|48\d{9})$/;
+    return pattern.test(cleaned);
   };
 
   const handleInputChange = (e) => {
@@ -99,18 +101,18 @@ const Modal = ({ isOpen, onClose }) => {
       if (params.get('utm_source')) {
         params.append("utm_source", params.get('utm_source'));
       }
-      if (params.get('utm_medium')) {
-        params.append("utm_medium", params.get('utm_medium'));
-      }
+      // if (params.get('utm_medium')) {
+      //   params.append("utm_medium", params.get('utm_medium'));
+      // }
 
       const gaClientId = getGAClientId();
-      const ymClientId = getYandexClientId();
-      const clientId = gaClientId || ymClientId;
+      //const ymClientId = getYandexClientId();
 
-      if (clientId) { 
-        params.append("r_cl_id", clientId);
-      }
-
+      // if (gaClientId) { 
+      //   params.append("r_cl_id", gaClientId);
+      // }
+      console.log("Отправляемые данные (URLSearchParams):", params.toString());
+      
       const response = await fetch("https://api.u-on.ru/tCjYa5IOpS143s3V6w4j/lead/create.json", {
         method: "POST",
         mode: "no-cors",
@@ -177,55 +179,55 @@ const Modal = ({ isOpen, onClose }) => {
                 </div>
                 <div className="mb-4">
                 <IMaskInput
-                    mask={[
-                    {
-                        mask: "+{375} 00 000-00-00", // Беларусь
-                        startsWith: "375",
-                        country: "BY",
-                    },
-                    {
-                        mask: "+{7} 000 000-00-00", // Россия
-                        startsWith: "7",
-                        country: "RU",
-                    },
-                    {
-                        mask: "+{48} 000-000-000", // Польша
-                        startsWith: "48",
-                        country: "PL",
-                    },
-                    {
-                        mask: "+0000000000000", // fallback
-                    },
-                    ]}
-                    dispatch={(appended, dynamicMasked) => {
-                    const number = (dynamicMasked.value + appended).replace(/\D/g, "");
-                    return dynamicMasked.compiledMasks.find(m => number.startsWith(m.startsWith)) || dynamicMasked.compiledMasks[3];
-                    }}
-                    definitions={{ '0': { mask: /[0-9]/ } }}
-                    lazy={false}
-                    overwrite={true}
-                    placeholder={isPhoneFocused ? "+" : "Телефон* (начиная с +)"}
-                    value={formData.phone || ""}
-                    onAccept={(value) => {
-                    const cleanValue = value.replace(/[^\d+]/g, "");
-                    setFormData({ ...formData, phone: cleanValue });
-                    }}
-                    onFocus={() => setIsPhoneFocused(true)}
-                    onBlur={(e) => {
-                    if (!e.target.value || e.target.value === "+") {
-                        setFormData({ ...formData, phone: "" });
-                        setIsPhoneFocused(false);
-                    }
-                    }}
-                    className={`w-full border ${
-                    errors.phone ? "border-red-500" : "border-[#15419E]"
-                    } rounded-full py-2 px-4 w-max mdd:w-full text-[14px] text-gray-600`}
-                />
-                <p className="text-xs text-gray-500">Номер в международном формате: +375, +7, +48</p>
-                  {errors.phone && (
-                      <p className="text-red-500 text-sm mt-1">{errors.phone}</p>
-                  )}
-                </div>
+                  mask={[
+                  {
+                      mask: "+{375} 00 000-00-00", // Беларусь
+                      startsWith: "375",
+                      country: "BY",
+                  },
+                  {
+                      mask: "+{7} 000 000-00-00", // Россия
+                      startsWith: "7",
+                      country: "RU",
+                  },
+                  {
+                      mask: "+{48} 000-000-000", // Польша
+                      startsWith: "48",
+                      country: "PL",
+                  },
+                  {
+                      mask: "+0000000000000", // fallback
+                  },
+                  ]}
+                  dispatch={(appended, dynamicMasked) => {
+                  const number = (dynamicMasked.value + appended).replace(/\D/g, "");
+                  return dynamicMasked.compiledMasks.find(m => number.startsWith(m.startsWith)) || dynamicMasked.compiledMasks[3];
+                  }}
+                  definitions={{ '0': { mask: /[0-9]/ } }}
+                  lazy={false}
+                  overwrite={true}
+                  placeholder={isPhoneFocused ? "+" : "Телефон* (начиная с +)"}
+                  value={formData.phone || ""}
+                  onAccept={(value) => {
+                  const cleanValue = value.replace(/[^\d+]/g, "");
+                  setFormData({ ...formData, phone: cleanValue });
+                  }}
+                  onFocus={() => setIsPhoneFocused(true)}
+                  onBlur={(e) => {
+                  if (!e.target.value || e.target.value === "+") {
+                      setFormData({ ...formData, phone: "" });
+                      setIsPhoneFocused(false);
+                  }
+                  }}
+                  className={`w-full border ${
+                  errors.phone ? "border-red-500" : "border-[#15419E]"
+                  } rounded-full p-3 text-sm`}
+              />
+              <p className="text-xs text-gray-500 pl-3">Международный формат: +375, +7, +48</p>
+              {errors.phone && (
+                  <p className="text-red-500 text-xs mt-1 pl-3">{errors.phone}</p>
+              )}
+              </div>
                 <div className="mb-1">
                   <input
                       type="email"
