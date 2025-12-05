@@ -4,6 +4,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import LandingPage from './pages/LandingPage';
 import NotFoundPage from './components/NotFoundPage';
+import SpasiboPage from './components/spasibo';
 import Modal from './components/Modal';
 import {useEffect, useState} from 'react';
 
@@ -66,6 +67,12 @@ const App = () => {
               <LandingPage
                 onOpenModal={handleOpenModal}
               />
+            }
+          />
+          <Route
+            path="/spasibo"
+            element={
+              <SpasiboPage />
             }
           />
           <Route path="*" element={<NotFoundPage/>}/>
