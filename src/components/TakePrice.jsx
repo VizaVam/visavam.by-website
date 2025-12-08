@@ -219,7 +219,7 @@ const FormBlock = () => {
 
             // Подготовка данных в формате URLSearchParams
             const params = new URLSearchParams();
-            params.append("source", "заявка с сайта visavam.by лэндинга");
+            params.append("source", "заявка с visavam.by лэндинга");
             params.append("note", noteText); // Добавляем текстовое примечание
             params.append("u_phone", formattedPhone);
             if (params.get('utm_source')) {
@@ -534,7 +534,7 @@ const FormBlock = () => {
                                                     setIsPhoneFocused(false);
                                                 }
                                                 }}
-                                                className={`w-full border ${
+                                                className={`!w-full border ${
                                                 errors.phone ? "border-red-500" : "border-[#15419E]"
                                                 } rounded-full py-2 px-4 w-max mdd:w-full text-[14px] text-gray-600`}
                                             />

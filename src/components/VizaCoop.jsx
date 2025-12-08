@@ -96,7 +96,7 @@ const VisaSupportSection = ({onOpenModal}) => {
                             <div className="mt-auto">
                                 <button
                                 onClick={onOpenModal}
-                                className="header__bottom-right-btn relative overflow-hidden sm:w-max mdd:w-full text-[16px] lg:w-auto bg-customBlue text-white py-3 px-8 rounded-full shadow-[0_2px_4px_-2px_rgba(0,122,255,0.8)] hover:bg-blue-600 active:scale-95 transition-transform duration-150 ease-in-out z-50"
+                                className="header__bottom-right-btn relative overflow-hidden sm:w-max mdd:w-full text-[16px] lg:w-auto bg-customBlue text-white py-3 px-8 rounded-full shadow-[0_2px_4px_-2px_rgba(0,122,255,0.8)] hover:bg-blue-600 active:scale-95 transition-transform duration-150 ease-in-out z-1"
                             >
                                 {/* Три медленные пульсирующие волны, затем пауза */}
                                 {[0, 1, 2].map((i) => (
