@@ -222,22 +222,17 @@ const FormBlock = () => {
             params.append("source", "заявка с visavam.by лэндинга");
             params.append("note", noteText); // Добавляем текстовое примечание
             params.append("u_phone", formattedPhone);
-            if (params.get('utm_source')) {
-                params.append("utm_source", params.get('utm_source'));
+
+            const searchParams = new URLSearchParams(window.location.search)
+            if (searchParams.get('utm_source')) {
+                params.append("utm_source", searchParams.get('utm_source'));
             }
-            
-            // if (params.get('utm_medium')) {
-            //     params.append("utm_medium", params.get('utm_medium'));
-            // }
-
-            // const gaClientId = getGAClientId();
-            //const ymClientId = getYandexClientId();
-            //const clientId = gaClientId || ymClientId;
-
-            // if (gaClientId) { 
-            //     params.append("r_cl_id", gaClientId);
-            // }
-            // r_cl_id
+            if (searchParams.get('utm_medium')) {
+                params.append("utm_medium", searchParams.get('utm_medium'));
+            }
+            if (searchParams.get('utm_compaign')) {
+                params.append("utm_compaign", searchParams.get('utm_compaign'));
+            }
 
             console.log("Отправляемые данные (URLSearchParams):", params.toString());
 

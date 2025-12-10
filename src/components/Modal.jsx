@@ -98,19 +98,17 @@ const Modal = ({ isOpen, onClose }) => {
       params.append("u_email", finalEmail);
       params.append("source", "заявка с visavam.by лэндинга");
 
-      if (params.get('utm_source')) {
-        params.append("utm_source", params.get('utm_source'));
+      const searchParams = new URLSearchParams(window.location.search)
+      if (searchParams.get('utm_source')) {
+          params.append("utm_source", searchParams.get('utm_source'));
       }
-      // if (params.get('utm_medium')) {
-      //   params.append("utm_medium", params.get('utm_medium'));
-      // }
+      if (searchParams.get('utm_medium')) {
+          params.append("utm_medium", searchParams.get('utm_medium'));
+      }
+      if (searchParams.get('utm_compaign')) {
+          params.append("utm_compaign", searchParams.get('utm_compaign'));
+      }
 
-      const gaClientId = getGAClientId();
-      //const ymClientId = getYandexClientId();
-
-      // if (gaClientId) { 
-      //   params.append("r_cl_id", gaClientId);
-      // }
       console.log("Отправляемые данные (URLSearchParams):", params.toString());
       
       const response = await fetch("https://api.u-on.ru/tCjYa5IOpS143s3V6w4j/lead/create.json", {
