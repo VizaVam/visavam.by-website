@@ -65,26 +65,10 @@ const App = () => {
               />
             }
           />
-          <Route
-            path="/request"
-            element={
-              <LandingPage
-                onOpenModal={handleOpenModal}
-              />
-            }
-          />
-          <Route
-            path="/spasibo"
-            element={
-              <SpasiboPage />
-            }
-          />
           <Route path="*" element={<NotFoundPage/>}/>
         </Routes>
       </main>
       <Footer/>
-      {/* Модальное окно */}
-      <Modal isOpen={isModalOpen} onClose={handleCloseModal}/>
     </div>
   );
 };
