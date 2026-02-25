@@ -15,23 +15,27 @@ const App = () => {
   const [hasTimerestricted, setHasTimerestricted] = useState(true);
 
   const handleOpenModal = () => {
-    setModalOpen(true);
-    navigate('/request');
+    const b24Button = document.getElementById('b24-web-form-popup-btn-505');
+    if (b24Button) {
+      b24Button.click();
+    }
+    // setModalOpen(true);
+    // navigate('/request');
   };
 
-  const handleCloseModal = () => {
-    setModalOpen(false);
-    navigate('/');
-  };
+  // const handleCloseModal = () => {
+  //   setModalOpen(false);
+  //   navigate('/');
+  // };
 
   // Открытие модального окна при маршруте `/request`
-  useEffect(() => {
-    if (location.pathname === '/request') {
-      setModalOpen(true);
-    } else {
-      setModalOpen(false);
-    }
-  }, [location.pathname]);
+  // useEffect(() => {
+  //   if (location.pathname === '/request') {
+  //     setModalOpen(true);
+  //   } else {
+  //     setModalOpen(false);
+  //   }
+  // }, [location.pathname]);
 
   useEffect(() => {
     if (location.pathname === '/robots.txt') {
